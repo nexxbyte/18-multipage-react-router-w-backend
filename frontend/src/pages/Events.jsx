@@ -28,9 +28,9 @@ export default function EventsPage() {
 		<>
 			<h1>Event Page!</h1>
 			<ul>
-				{EVENTS.map((eve) => (
-					<li key={eve.id}>
-						<Link to={eve.id}>{eve.title}</Link>
+				{EVENTS.map((event) => (
+					<li key={event.id}>
+						<Link to={event.id}>{event.title}</Link>
 					</li>
 				))}
 			</ul>
