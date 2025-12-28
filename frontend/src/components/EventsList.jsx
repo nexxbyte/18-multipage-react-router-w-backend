@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import classes from "./EventsList.module.css";
 
 export default function EventsList({ events }) {
@@ -9,7 +10,7 @@ export default function EventsList({ events }) {
 					<li
 						key={event.id}
 						className={classes.item}>
-						<a href="...">
+						<Link to={event.id}>
 							<img
 								src={event.image}
 								alt={event.title}
@@ -18,7 +19,7 @@ export default function EventsList({ events }) {
 								<h2>{event.title}</h2>
 								<time>{event.date}</time>
 							</div>
-						</a>
+						</Link>
 					</li>
 				))}
 			</ul>
