@@ -1,39 +1,21 @@
-import { Link } from "react-router";
-
-const EVENTS = [
-	{
-		id: "e1",
-		title: "Event 1",
-	},
-	{
-		id: "e2",
-		title: "Event 2",
-	},
-	{
-		id: "e3",
-		title: "Event 3",
-	},
-	{
-		id: "e4",
-		title: "Event 4",
-	},
-	{
-		id: "e5",
-		title: "Event 5",
-	},
-];
+import { useLoaderData } from "react-router";
+import EventsList from "../components/EventsList";
 
 export default function EventsPage() {
-	return (
-		<>
-			<h1>Event Page!</h1>
-			<ul>
-				{EVENTS.map((event) => (
-					<li key={event.id}>
-						<Link to={event.id}>{event.title}</Link>
-					</li>
-				))}
-			</ul>
-		</>
-	);
+	const data = useLoaderData();
+	const events = data.events;
+
+	return <EventsList events={events} />;
+}
+
+export async function loader() {
+	const response = await fetch("http://localhost:8080/events");
+
+	if (!response.ok) {
+		throw new Response(JSON.stringify({ message: "Could not fetch events." }), {
+			status: 500,
+		});
+	} else {
+		return response;
+	}
 }
